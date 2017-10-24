@@ -9,9 +9,17 @@ function Game() {
   /* Board.initial generate all elements used to be pieces and empty squares on the
   board and return an array of the board initial position*/
   this.board = Board.initial();
-  this.bluePlayerTurn = true;
 }
 
-Game.prototype.test = function(param){
-  console.log(this.board);
+Game.prototype.flattenBoard = function(param){
+  var flatBoard = this.board.reduce(
+    function(a,b) {
+      return a.concat(b);
+    },[]
+  );
+  return flatBoard;
+}
+
+Game.prototype.whoseTurn = function(){
+
 }
