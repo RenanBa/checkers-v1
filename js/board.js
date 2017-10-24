@@ -19,4 +19,8 @@ var Board = {
     return board;
   }, // end of initial
 
+  pieceSelected: function pieceSelected(){
+
+  }
+
 } // end of Board
