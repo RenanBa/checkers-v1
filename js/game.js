@@ -6,6 +6,12 @@
 // To capture, the piece capturing jumps the enemy piece advancing two squares on diagonal
 // The game end when one of the player lost all pieces or doesn't have moves to make
 function Game() {
+  /* Board.initial generate all elements used to be pieces and empty squares on the
+  board and return an array of the board initial position*/
   this.board = Board.initial();
+  this.bluePlayerTurn = true;
 }
 
+Game.prototype.test = function(param){
+  console.log(this.board);
+}
