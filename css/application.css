@@ -42,89 +42,89 @@ body {
 
 /*Position all the squares that will be used to place the pieces*/
 /*Green pieces*/
-#square1 {
+#square2 {
   margin: 1% 0% 0% 14.7%;
   position: absolute;
 }
-#square2 {
+#square4 {
   margin: 1% 0% 0% 39.5%;
   position: absolute;
 }
-#square3 {
+#square6 {
   margin: 1% 0% 0% 64%;
   position: absolute;
 }
-#square4 {
+#square8 {
   margin: 1% 0% 0% 88.7%;
   position: absolute;
 }
-#square5 {
+#square9 {
   margin: 13.5% 0% 0% 2.5%;
   position: absolute;
 }
-#square6 {
+#square11 {
   margin: 13.5% 0% 0% 26.9%;
   position: absolute;
 }
-#square7 {
+#square13 {
   margin: 13.5% 0% 0% 51.5%;
   position: absolute;
 }
-#square8 {
+#square15 {
   margin: 13.5% 0% 0% 76.5%;
   position: absolute;
 }
-#square9 {
+#square18 {
   margin: 26% 0% 0% 14.7%;
   position: absolute;
 }
-#square10 {
+#square20 {
   margin: 26% 0% 0% 39.6%;
   position: absolute;
 }
-#square11 {
+#square22 {
   margin: 26% 0% 0% 64%;
   position: absolute;
 }
-#square12 {
+#square24 {
   margin: 26% 0% 0% 88.5%;
   position: absolute;
 }
 
 
 /*available pieces*/
-#square13 {
+/*#square13 {
   margin: 38.3% 0% 0% 2.5%;
   position: absolute;
-}
+}*/
 #square14 {
   margin: 38.3% 0% 0% 27%;
   position: absolute;
 }
-#square15 {
+/*#square15 {
   margin: 38.3% 0% 0% 51.7%;
   position: absolute;
-}
-#square16 {
+}*/
+/*#square16 {
   margin: 38.3% 0% 0% 76.5%;
   position: absolute;
-}
+}*/
 #square17 {
   margin: 50.5% 0% 0% 14.7%;
   position: absolute;
 }
-#square18 {
+/*#square18 {
   margin: 50.5% 0% 0% 39.6%;
   position: absolute;
-}
+}*/
 #square19 {
   margin: 50.5% 0% 0% 64%;
   position: absolute;
 }
-#square20 {
+/*#square20 {
   margin: 50.5% 0% 0% 89%;
   position: absolute;
-}
+}*/
 
 
  /*Blue pices */
@@ -166,15 +166,15 @@ body {
   margin: 63% 0% 0% 2.5%;
   position: absolute;
 }
-#square22 {
+/*#square22 {
   margin: 63% 0% 0% 27%;
   position: absolute;
-}
+}*/
 #square23 {
   margin: 63% 0% 0% 51.5%;
   position: absolute;
 }
-#square24 {
+/*#square24 {
   margin: 63% 0% 0% 76.5%;
   position: absolute;
-}
+}*/
