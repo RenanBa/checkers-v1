@@ -1,7 +1,9 @@
 // View
 $(document).ready(function() {
   console.log("Ready!");
+  // initialize the game and create a board
   var game = new Game();
+  PopulateBoard(game.flattenBoard());
 
   //Handles clicks on the checkers board
   $(".board").on("click", function(e){
@@ -12,3 +14,7 @@ $(document).ready(function() {
 
 }) // end (document).ready
 
+
+var PopulateBoard = function(board){
+
+}
