@@ -1,0 +1,20 @@
+
+body {
+  text-align: center;
+}
+
+.tabuleiro {
+  margin: 0, auto;
+  margin: 2.3% 0% 0% 28%;
+  position: absolute;
+  width: 588px;
+  height: 588px;
+  /*border: 2px solid yellow;*/
+}
+
+#image-board {
+  width: 650px;
+  height: 650px;
+  margin: -5.3% 0% 0% -54%;
+  position: absolute;
+}
