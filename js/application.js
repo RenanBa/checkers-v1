@@ -4,7 +4,7 @@ $(document).ready(function() {
   var game = new Game();
 
   //Handles clicks on the checkers board
-  $(".board").on("click", "a", function(e){
+  $(".board").on("click", function(e){
     e.preventDefault();
     game.test(game);
 
