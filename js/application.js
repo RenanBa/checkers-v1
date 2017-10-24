@@ -24,7 +24,7 @@ var PopulateBoard = function(board){
       $(".board").append($.parseHTML('<a href="'+(index+1)+'" id="square'+(index+1)+'" class="green"></a>'));
     } else if (value == "blue"){
       console.log("blue");
-      // $(".board").append($.parseHTML('<a href="'+(index+1)+'" id="square'+(index+1)+'" class="blue"></a>'));
+      $(".board").append($.parseHTML('<a href="'+(index+1)+'" id="square'+(index+1)+'" class="blue"></a>'));
     } else if (value == "empty"){
       console.log("Empty");
       $(".board").append($.parseHTML('<a href="'+(index+1)+'" id="square'+(index+1)+'" class="empty"></a>'));

@@ -19,7 +19,7 @@ body {
 }
 
 /*Set green and blues pieces style*/
-.green, .blue, .empty/*temporary empty*/ {
+.green, .blue {
   display: block;
   width: 60px;
   height: 60px;
@@ -32,10 +32,6 @@ body {
 }
 .blue {
   background: blue;
-}
-/*temporary empty*/
-.empty {
-  background-color: yellow;
 }
 .green:hover, .blue:hover  {
   border: 2px solid #fff;
@@ -133,53 +129,62 @@ body {
 
 
  /*Blue pices */
-/*#square29 {
-  margin: 88% 0% 0% 2.5%;
-  position: absolute;
-}*/
-#square30 {
-  margin: 88% 0% 0% 27%;
+
+#square41 {
+  margin: 63% 0% 0% 2.5%;
   position: absolute;
 }
-/*#square31 {
-  margin: 88% 0% 0% 52%;
+#square43 {
+  margin: 63% 0% 0% 27%;
   position: absolute;
-}*/
-#square32 {
-  margin: 88% 0% 0% 76.5%;
+}
+#square45 {
+  margin: 63% 0% 0% 51.5%;
+  position: absolute;
+}
+#square47 {
+  margin: 63% 0% 0% 76.5%;
   position: absolute;
 }
 
-/*#square25 {
+#square50 {
   margin: 75.5% 0% 0% 14.7%;
   position: absolute;
-}*/
-#square26 {
+}
+#square52 {
   margin: 75.5% 0% 0% 39.6%;
   position: absolute;
 }
-/*#square27 {
+#square54 {
   margin: 75.5% 0% 0% 64%;
   position: absolute;
-}*/
-#square28 {
+}
+#square56 {
   margin: 75.5% 0% 0% 88.6%;
   position: absolute;
 }
 
-#square21 {
-  margin: 63% 0% 0% 2.5%;
+
+#square57 {
+  margin: 88% 0% 0% 2.5%;
   position: absolute;
 }
-/*#square22 {
-  margin: 63% 0% 0% 27%;
-  position: absolute;
-}*/
-#square23 {
-  margin: 63% 0% 0% 51.5%;
+#square59 {
+  margin: 88% 0% 0% 27%;
   position: absolute;
 }
-/*#square24 {
-  margin: 63% 0% 0% 76.5%;
+#square61 {
+  margin: 88% 0% 0% 52%;
   position: absolute;
-}*/
+}
+#square63 {
+  margin: 88% 0% 0% 76.5%;
+  position: absolute;
+}
+
+
+
+
+
+
+
