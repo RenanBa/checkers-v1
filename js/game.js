@@ -9,15 +9,11 @@ function Game() {
   /* Board.initial generate all elements used to be pieces and empty squares on the
   board and return an array of the board initial position*/
   this.board = Board.initial();
+  this.flattenBoard = Board.flatten(this.board);
   this.player = "blue";
-}
-
-// flattenBoard ask the Board to flatten the current game board
-Game.prototype.flattenBoard = function(){
-  return Board.flatten(this.board);
 }
 
 Game.prototype.selectPiece = function(element){
   console.log(element);
-
+  console.log(this.flattenBoard);
 }
