@@ -26,4 +26,30 @@ var Board = {
   return flatBoard;
   },
 
+// rows will trans`form a single array board to a 8x8 board arrays
+  rows: function rows(board){
+    var boardRows = [];
+    var startRow = 0;
+    var endRow = 8;
+    for (i = 0; i <= 7; i++){
+      boardRows.push(board.slice(startRow, endRow));
+      startRow += 8;
+      endRow += 8;
+    }
+    return boardRows;
+  },
+
+  showMoves: function showMoves(selectedPiece, board){
+    // console.log(board);
+    console.log(selectedPiece);
+
+    if (selectedPiece > 8){
+      console.log("More than 9");
+      board.forEach(function(array, index){
+      // console.log(array)
+    })
+    }
+
+  },
+
 } // end of Board`
