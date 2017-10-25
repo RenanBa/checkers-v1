@@ -10,10 +10,11 @@ function Game() {
   board and return an array of the board initial position*/
   this.board = Board.initial();
   this.flattenBoard = Board.flatten(this.board);
-  this.player = "blue";
+  this.player = "green";
 }
 
 Game.prototype.selectPiece = function(element){
-  console.log(element);
-  console.log(this.flattenBoard);
+  var boardRows = Board.rows(element.href, this.flattenBoard);
+  console.log(boardRows);
+  // Board.showMoves(element.href, this.board);
 }

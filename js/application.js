@@ -2,18 +2,17 @@
 $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
-  var game = new Game();
+  game = new Game();
   PopulateBoard(game.flattenBoard);
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-    game.selectPiece({
-                      href: $(this).attr("href"),
-                      className: $(this).attr("class"),
-                      idName: $(this).attr("id")
-                    });
-    $(this).addClass("spin");
+    PlayerClick({
+                  href: $(this).attr("href"),
+                  className: $(this).attr("class"),
+                  idName: $(this).attr("id")
+                })
   }) // .board on click, a funciton
 
 }) // end (document).ready
@@ -30,4 +29,9 @@ var PopulateBoard = function(board){
       $(".board").append($.parseHTML('<a href="'+(index)+'" id="square'+(index)+'" class="empty"></a>'));
     }
   })
+}
+
+var PlayerClick = function(element){
+  $("#"+element.idName).addClass("spin");
+  game.selectPiece(element);
 }
