@@ -8,7 +8,11 @@ $(document).ready(function() {
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-    game.selectPiece($(this));
+    game.selectPiece({
+                      href: $(this).attr("href"),
+                      className: $(this).attr("class"),
+                      idName: $(this).attr("id")
+                    });
   }) // .board on click, a funciton
 
 }) // end (document).ready
