@@ -58,6 +58,7 @@ body {
   margin: 1% 0% 0% 88.7%;
   position: absolute;
 }
+
 #square9 {
   margin: 13.5% 0% 0% 2.5%;
   position: absolute;
@@ -74,6 +75,7 @@ body {
   margin: 13.5% 0% 0% 76.5%;
   position: absolute;
 }
+
 #square18 {
   margin: 26% 0% 0% 14.7%;
   position: absolute;
@@ -110,6 +112,7 @@ body {
   margin: 38.3% 0% 0% 76.5%;
   position: absolute;
 }
+
 #square34 {
   margin: 50.5% 0% 0% 14.7%;
   position: absolute;
@@ -129,7 +132,6 @@ body {
 
 
  /*Blue pices */
-
 #square41 {
   margin: 63% 0% 0% 2.5%;
   position: absolute;
@@ -163,7 +165,6 @@ body {
   margin: 75.5% 0% 0% 88.6%;
   position: absolute;
 }
-
 
 #square57 {
   margin: 88% 0% 0% 2.5%;
