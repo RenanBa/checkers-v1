@@ -38,57 +38,67 @@ body {
   box-shadow: 0 0 40px rgb(255,255,255);
 }
 
+/*used show the possible moves when a piece is selected*/
+.possibleMoves {
+  display: block;
+  width: 65px;
+  height: 65px;
+  transition: all linear 0.1s;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border-radius: 100px;
+}
+
 
 
 /*Position all the squares that will be used to place the pieces*/
 /*Green pieces*/
-#square2 {
+#square1 {
   margin: 1% 0% 0% 14.7%;
   position: absolute;
 }
-#square4 {
+#square3 {
   margin: 1% 0% 0% 39.5%;
   position: absolute;
 }
-#square6 {
+#square5 {
   margin: 1% 0% 0% 64%;
   position: absolute;
 }
-#square8 {
+#square7 {
   margin: 1% 0% 0% 88.7%;
   position: absolute;
 }
 
-#square9 {
+#square8 {
   margin: 13.5% 0% 0% 2.5%;
   position: absolute;
 }
-#square11 {
+#square10 {
   margin: 13.5% 0% 0% 26.9%;
   position: absolute;
 }
-#square13 {
+#square12 {
   margin: 13.5% 0% 0% 51.5%;
   position: absolute;
 }
-#square15 {
+#square14 {
   margin: 13.5% 0% 0% 76.5%;
   position: absolute;
 }
 
-#square18 {
+#square17 {
   margin: 26% 0% 0% 14.7%;
   position: absolute;
 }
-#square20 {
+#square19 {
   margin: 26% 0% 0% 39.6%;
   position: absolute;
 }
-#square22 {
+#square21 {
   margin: 26% 0% 0% 64%;
   position: absolute;
 }
-#square24 {
+#square23 {
   margin: 26% 0% 0% 88.5%;
   position: absolute;
 }
@@ -96,93 +106,92 @@ body {
 
 
 /*available pieces*/
-#square25 {
+#square24 {
   margin: 38.3% 0% 0% 2.5%;
   position: absolute;
 }
-#square27 {
+#square26 {
   margin: 38.3% 0% 0% 27%;
   position: absolute;
 }
-#square29 {
+#square28 {
   margin: 38.3% 0% 0% 51.7%;
   position: absolute;
 }
-#square31 {
+#square30 {
   margin: 38.3% 0% 0% 76.5%;
   position: absolute;
 }
 
-#square34 {
+#square33 {
   margin: 50.5% 0% 0% 14.7%;
   position: absolute;
 }
-#square36 {
+#square35 {
   margin: 50.5% 0% 0% 39.6%;
   position: absolute;
 }
-#square38 {
+#square37 {
   margin: 50.5% 0% 0% 64%;
   position: absolute;
 }
-#square40 {
+#square39 {
   margin: 50.5% 0% 0% 89%;
   position: absolute;
 }
 
 
  /*Blue pices */
-#square41 {
+#square40 {
   margin: 63% 0% 0% 2.5%;
   position: absolute;
 }
-#square43 {
+#square42 {
   margin: 63% 0% 0% 27%;
   position: absolute;
 }
-#square45 {
+#square44 {
   margin: 63% 0% 0% 51.5%;
   position: absolute;
 }
-#square47 {
+#square46 {
   margin: 63% 0% 0% 76.5%;
   position: absolute;
 }
 
-#square50 {
+#square49 {
   margin: 75.5% 0% 0% 14.7%;
   position: absolute;
 }
-#square52 {
+#square51 {
   margin: 75.5% 0% 0% 39.6%;
   position: absolute;
 }
-#square54 {
+#square53 {
   margin: 75.5% 0% 0% 64%;
   position: absolute;
 }
-#square56 {
+#square55 {
   margin: 75.5% 0% 0% 88.6%;
   position: absolute;
 }
 
-#square57 {
+#square56 {
   margin: 88% 0% 0% 2.5%;
   position: absolute;
 }
-#square59 {
+#square58 {
   margin: 88% 0% 0% 27%;
   position: absolute;
 }
-#square61 {
+#square60 {
   margin: 88% 0% 0% 52%;
   position: absolute;
 }
-#square63 {
+#square62 {
   margin: 88% 0% 0% 76.5%;
   position: absolute;
 }
-
 
 
 /* SPIN ANIMATION*/
@@ -225,3 +234,5 @@ body {
         transform:rotate(360deg);
     }
 }
+
+
