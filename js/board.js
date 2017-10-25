@@ -21,8 +21,17 @@ var Board = {
         board.length%2 == 0 ? board.push(rowBluePositionEven) : board.push(rowBluePositionOdd);
       }
     }
-
     return board;
   }, // end of initial
+
+  // flatten board receive the current game board and return in one single array
+  flatten: function flatten(board){
+    var flatBoard = board.reduce(
+    function(a,b) {
+      return a.concat(b);
+    },[]
+  );
+  return flatBoard;
+  },
 
 } // end of Board`
