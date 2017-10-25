@@ -13,6 +13,7 @@ $(document).ready(function() {
                       className: $(this).attr("class"),
                       idName: $(this).attr("id")
                     });
+    $(this).addClass("spin");
   }) // .board on click, a funciton
 
 }) // end (document).ready
