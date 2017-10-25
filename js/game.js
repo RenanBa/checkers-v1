@@ -19,7 +19,3 @@ Game.prototype.flattenBoard = function(param){
   );
   return flatBoard;
 }
-
-Game.prototype.whoseTurn = function(){
-
-}
