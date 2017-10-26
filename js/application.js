@@ -8,13 +8,14 @@ $(document).ready(function() {
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-    $(this).addClass("spin");
     var showMoves = game.selectPiece({
                       href: $(this).attr("href"),
                       className: $(this).attr("class"),
                       idName: $(this).attr("id")
                     })
-    PopulateBoard(showMoves)
+    PopulateBoard(showMoves);
+    console.log(game.flattenBoard);
+    $("#"+$(this).attr("id")).addClass("spin");
   }) // .board on click, a funciton
 
 }) // end (document).ready

@@ -39,6 +39,13 @@ var Board = {
     return boardRows;
   },
 
+  selectedPiece: function selectedPiece(piece, board){
+    console.log("selectedPiece");
+    var boardMark = board;
+    boardMark[piece] = "selected";
+    return boardMark;
+  },
+
   findPosition: function findPosition(board){
     console.log("findPosition");
     var position = {};
@@ -55,9 +62,10 @@ var Board = {
 
   possibleMoves: function possibleMoves(piecePosition, board){
     console.log(piecePosition);
-    board[piecePosition.row + 1][piecePosition.column + 1] = "possibleMoves";
-    board[piecePosition.row + 1][piecePosition.column - 1] = "possibleMoves";
-    return board;
+    var boardMark = board;
+    boardMark[piecePosition.row + 1][piecePosition.column + 1] = "possibleMoves";
+    boardMark[piecePosition.row + 1][piecePosition.column - 1] = "possibleMoves";
+    return boardMark;
   },
 
 } // end of Board`
