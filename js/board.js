@@ -26,7 +26,7 @@ var Board = {
   return flatBoard;
   },
 
-// rows will trans`form a single array board to a 8x8 board arrays
+// rows will transform a single array board to a 8x8 board arrays
   rows: function rows(board){
     var boardRows = [];
     var startRow = 0;
@@ -39,17 +39,25 @@ var Board = {
     return boardRows;
   },
 
-  showMoves: function showMoves(selectedPiece, board){
-    // console.log(board);
-    console.log(selectedPiece);
-
-    if (selectedPiece > 8){
-      console.log("More than 9");
-      board.forEach(function(array, index){
-      // console.log(array)
+  findPosition: function findPosition(board){
+    console.log("findPosition");
+    var position = {};
+    board.forEach(function(array, index){
+      for(i = 0; i <= array.length; i++){
+        if (array[i] == "selected"){
+          position.row = index;
+          position.column = i;
+        }
+      }
     })
-    }
+    return position;
+  },
 
+  possibleMoves: function possibleMoves(piecePosition, board){
+    console.log(piecePosition);
+    board[piecePosition.row + 1][piecePosition.column + 1] = "possibleMoves";
+    board[piecePosition.row + 1][piecePosition.column - 1] = "possibleMoves";
+    return board;
   },
 
 } // end of Board`

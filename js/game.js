@@ -14,7 +14,13 @@ function Game() {
 }
 
 Game.prototype.selectPiece = function(element){
-  var boardRows = Board.rows(element.href, this.flattenBoard);
-  console.log(boardRows);
+  var flatBoardSelect = this.flattenBoard;
+  flatBoardSelect[element.href] = "selected"; //href store the piece id on the element
+  var boardRows = Board.rows(flatBoardSelect);
+  var selectedPieceBoardRow = Board.findPosition(boardRows);
+  var boardPossibleMoves = Board.possibleMoves(selectedPieceBoardRow, boardRows);
+  flatBoardSelect = Board.flatten(boardPossibleMoves);
+  flatBoardSelect[element.href] = this.player;
+  return flatBoardSelect;
   // Board.showMoves(element.href, this.board);
 }
