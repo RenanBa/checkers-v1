@@ -1,4 +1,4 @@
-// View
+// Interface Controller
 $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
