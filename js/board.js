@@ -26,4 +26,46 @@ var Board = {
   return flatBoard;
   },
 
+// rows will transform a single array board to a 8x8 board arrays
+  rows: function rows(board){
+    var boardRows = [];
+    var startRow = 0;
+    var endRow = 8;
+    for (i = 0; i <= 7; i++){
+      boardRows.push(board.slice(startRow, endRow));
+      startRow += 8;
+      endRow += 8;
+    }
+    return boardRows;
+  },
+
+  selectedPiece: function selectedPiece(piece, board){
+    console.log("selectedPiece");
+    var boardMark = board;
+    boardMark[piece] = "selected";
+    return boardMark;
+  },
+
+  findPosition: function findPosition(board){
+    console.log("findPosition");
+    var position = {};
+    board.forEach(function(array, index){
+      for(i = 0; i <= array.length; i++){
+        if (array[i] == "selected"){
+          position.row = index;
+          position.column = i;
+        }
+      }
+    })
+    return position;
+  },
+
+  possibleMoves: function possibleMoves(piecePosition, board){
+    console.log(piecePosition);
+    var boardMark = board;
+    boardMark[piecePosition.row + 1][piecePosition.column + 1] = "possibleMoves";
+    boardMark[piecePosition.row + 1][piecePosition.column - 1] = "possibleMoves";
+    return boardMark;
+  },
+
 } // end of Board`
