@@ -1,12 +1,10 @@
-# checkers-v1
-The main goal of this project is to update the game [Checkers](https://github.com/RenanBa/Checkers) which I made with in a single JavaScript file.
-
-
-### On this project I'm building a Checkers game with:
+## On this project I'm building a Checkers game with:
   1. JavaScript interface independent of the backend (js/application.js).
   2. A controller (js/game.js) to receive data and requests from the interface and manipulate the board.
   3. A complex JS model independent of the interface (js/board.js).
 
+### checkers-v1
+This project is an update version of the game [Checkers](https://github.com/RenanBa/Checkers) which I built in a single JavaScript file.
 
 #### About the game:
 * Checkers is played on a standard 64 square board. Only the 32 dark colored squares are used in play. Each player begins the game with 12 pieces, or checkers, placed in the three rows closest to him or her.
