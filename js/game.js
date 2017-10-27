@@ -51,7 +51,18 @@ function Game() {
 
 Game.prototype.selectPiece = function(element){
   this.showingMoves = true;
-  return (Board.findMoves(element.href));
+  var targets = Board.findMoves(element.href);
+
+  if (this.flattenBoard[targets.right] == this.playingNow){
+    targets.right = "none";
+  }
+  if (this.flattenBoard[targets.left] == this.playingNow){
+    targets.left = "none";
+  }
+
+
+  console.log(targets);
+  return (targets);
     // var flatBoardSelect = Board.selectedPiece(element.href, this.tempFlattenBoard);
     // var boardRows = Board.rows(flatBoardSelect); // make 8x8 board array
     // var selectedPieceBoardRow = Board.findPosition(boardRows); // look for the value "selected" and collect the ids

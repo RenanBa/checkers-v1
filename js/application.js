@@ -11,15 +11,14 @@ $(document).ready(function() {
   $(".board").on("click", "a", function(e){
     e.preventDefault();
     $(".spin").removeClass("spin");
-    $(".possibleMoves").removeClass("possibleMoves");
+    $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
 
     if (game.playingNow == "green" && $(this).attr('class') != "blue" && $(this).attr('class') != "empty"){
       game.startProgress();
 
       var showMoves = game.selectPiece({href: $(this).attr("href")});
-      console.log(showMoves.right.toString());
-      var rightTarget = showMoves.right.toString();
-      var leftTarget = showMoves.left.toString();
+      var rightTarget = showMoves.right;
+      var leftTarget = showMoves.left;
       $("#square"+rightTarget).removeClass("empty").addClass("possibleMoves");
       $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");
       $("#"+$(this).attr("id")).addClass("spin");
