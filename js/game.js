@@ -46,10 +46,14 @@ function Game() {
   this.flattenBoard = Board.flatten(this.board); // flatten current board to populate the DOM
   this.tempFlattenBoard = Board.flatten(this.board);// make a temporary copy of the flatten board to mark the selected piece
   this.playingNow = "green";
+  this.notPlaying = "blue";
   this.showingMoves = false;
+  this.currentPiece = 0;
+  this.start = false;
 }
 
 Game.prototype.selectPiece = function(element){
+  this.currentPiece = element.href;
   this.showingMoves = true;
   var targets = Board.findMoves(element.href);
 
@@ -59,22 +63,14 @@ Game.prototype.selectPiece = function(element){
   if (this.flattenBoard[targets.left] == this.playingNow){
     targets.left = "none";
   }
-
-
   console.log(targets);
   return (targets);
-    // var flatBoardSelect = Board.selectedPiece(element.href, this.tempFlattenBoard);
-    // var boardRows = Board.rows(flatBoardSelect); // make 8x8 board array
-    // var selectedPieceBoardRow = Board.findPosition(boardRows); // look for the value "selected" and collect the ids
-    // console.log(selectedPieceBoardRow);
-    // var boardPossibleMoves = Board.possibleMoves(selectedPieceBoardRow, this.board);
+}
 
-
-
-    // var moveOptionsBoard = Board.flatten(boardPossibleMoves);
-    // moveOptionsBoard[element.href] = this.playingNow;
-    // this.playerMove = true;
-    // return moveOptionsBoard;
+Game.prototype.makeMove = function(target){
+  console.log(target);
+  console.log(this.currentPiece);
+  return Board.makeMove(this.playingNow, this.currentPiece, target, this.flattenBoard);
 }
 
 Game.prototype.startProgress = function(board){
