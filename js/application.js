@@ -5,7 +5,6 @@ $(document).ready(function() {
   game = new Game();
 
     if(!game.start){
-      console.log("start");
       PopulateBoard(game.flattenBoard);
       game.start = true;
     }
@@ -15,25 +14,25 @@ $(document).ready(function() {
     e.preventDefault();
     var element = {href: $(this).attr("href"), className: $(this).attr('class'), idName: $(this).attr("id")};
 
+    // this if check if the current player is selecting the right piece color and display moves
     if (game.playingNow == element.className && element.className != game.notPlaying && element.className != "empty"){
-      game.startProgress();
-      var showMoves = game.selectPiece({href: $(this).attr("href")});
+      game.startProgress(); // this call start to save the board state
+      var showMoves = game.selectPiece(element); // here send the selected piece and return the possible moves
 
       // remove the class that spin the piece and remove the possibleMoves
       $(".spin").removeClass("spin");
       $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
       // add the class spin and possibleMoves
-      $("#square"+showMoves.right).removeClass("empty").addClass("possibleMoves");
-      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");
+      $("#square"+showMoves.right).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
+      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
       $("#"+$(this).attr("id")).addClass("spin");
 
     } else if (element.className == "possibleMoves"){
-      console.log("MAKE A MOVE");
-      console.log(element.className);
+      // send the position where the piece will be placed and return a new board with the new position
       var progressBorad = game.makeMove(element.href);
-      PopulateBoard(progressBorad);
+      PopulateBoard(progressBorad); //populate the update board
     }
-  }) // .board on click, a funciton
+  }) // .board on click, a function
 
 }) // end (document).ready
 

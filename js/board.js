@@ -26,12 +26,15 @@ var Board = {
   return flatBoard;
   },
 
+  // calculates where the move will be
+  // 9 and 7 will be always used to calculate the possible move
   findMoves: function findMoves(position){
     var position = parseInt(position);
     var moves = {right: position + 9, left: position + 7};
     return  moves;
   },
 
+  // apply the move into the flatten board to update the game state
   makeMove: function makeMove(player, piece, target, board){
     board[piece] = "empty";
     board[target] = player;

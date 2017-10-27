@@ -48,15 +48,16 @@ function Game() {
   this.playingNow = "green";
   this.notPlaying = "blue";
   this.showingMoves = false;
-  this.currentPiece = 0;
+  this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
 }
 
 Game.prototype.selectPiece = function(element){
-  this.currentPiece = element.href;
-  this.showingMoves = true;
-  var targets = Board.findMoves(element.href);
+  this.currentPiece = element.href; //save the piece selected
+  this.showingMoves = true; // change showingMoves to true
+  var targets = Board.findMoves(element.href); // send the selected piece and return the id for possible moves
 
+  // check if the possible moves have the same team color and if does change the id to none
   if (this.flattenBoard[targets.right] == this.playingNow){
     targets.right = "none";
   }
@@ -68,11 +69,12 @@ Game.prototype.selectPiece = function(element){
 }
 
 Game.prototype.makeMove = function(target){
-  console.log(target);
-  console.log(this.currentPiece);
+  // send the player color, the selected piece, the target and the current board to make the move
+  // and return a updated flattenBoard
   return Board.makeMove(this.playingNow, this.currentPiece, target, this.flattenBoard);
 }
 
+// Save every game board change into an array
 Game.prototype.startProgress = function(board){
   if (this.boardsCollection.length == 0 && !this.showingMoves){
     console.log("vazio");
