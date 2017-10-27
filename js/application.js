@@ -3,22 +3,35 @@ $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
   game = new Game();
+
+
   PopulateBoard(game.flattenBoard);
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-    var showMoves = game.selectPiece({
-                      href: $(this).attr("href"),
-                      className: $(this).attr("class"),
-                      idName: $(this).attr("id")
-                    })
-    PopulateBoard(showMoves);
-    console.log(game.flattenBoard);
-    $("#"+$(this).attr("id")).addClass("spin");
+    $(".spin").removeClass("spin");
+    $(".possibleMoves").removeClass("possibleMoves");
+
+    if (game.playingNow == "green" && $(this).attr('class') != "blue" && $(this).attr('class') != "empty"){
+      game.startProgress();
+
+      var showMoves = game.selectPiece({href: $(this).attr("href")});
+      console.log(showMoves.right.toString());
+      var rightTarget = showMoves.right.toString();
+      var leftTarget = showMoves.left.toString();
+      $("#square"+rightTarget).removeClass("empty").addClass("possibleMoves");
+      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");
+      $("#"+$(this).attr("id")).addClass("spin");
+
+    } else {
+      console.log("MAKE A MOVE");
+      console.log();
+    }
   }) // .board on click, a funciton
 
 }) // end (document).ready
+
 
 
 var PopulateBoard = function(board){
@@ -36,4 +49,3 @@ var PopulateBoard = function(board){
     }
   })
 }
-

@@ -16,6 +16,9 @@ var Board = {
     return board;
   }, // end of initial
 
+  currentBoard: function currentBoard(){
+  },
+
   // flatten board receive the current game board and return in one single array
   flatten: function flatten(board){
     var flatBoard = board.reduce(
@@ -44,6 +47,12 @@ var Board = {
     var boardMark = board;
     boardMark[piece] = "selected";
     return boardMark;
+  },
+
+  findMoves: function findMoves(position){
+    var position = parseInt(position);
+    var moves = {right: position + 9, left: position + 7};
+    return  moves;
   },
 
   findPosition: function findPosition(board){
