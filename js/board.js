@@ -7,9 +7,9 @@ var Board = {
                 ["X", "green", "X", "green", "X", "green", "X", "green"],
                 ["green", "X", "green", "X", "green", "X", "green", "X"],
                 ["X", "green", "X", "green", "X", "green", "X", "green"],
-                ["empty", "X", "blue", "X", "empty", "X", "empty", "X"],
+                ["empty", "X", "blue", "X", "blue", "X", "empty", "X"],
                 ["X", "empty", "X", "empty", "X", "empty", "X", "empty"],
-                ["blue", "X", "empty", "X", "blue", "X", "blue", "X"],
+                ["blue", "X", "empty", "X", "empty", "X", "blue", "X"],
                 ["X", "blue", "X", "blue", "X", "blue", "X", "blue"],
                 ["blue", "X", "blue", "X", "blue", "X", "blue", "X"]
               ];
@@ -37,7 +37,6 @@ var Board = {
   targetRight: function targetRight(piece, board){
     var piece = parseInt(piece);
     var target = piece + 9;
-    console.log(board[piece]);
     if (board[target] == "empty"){
       return target;
     } else {
@@ -48,7 +47,6 @@ var Board = {
   targetLeft: function targetLeft(piece, board){
     var piece = parseInt(piece);
     var target = piece + 7;
-    console.log(board[piece]);
     if (board[target] == "empty"){
       return target;
     } else {
@@ -60,6 +58,12 @@ var Board = {
   makeMove: function makeMove(player, piece, target, board){
     board[piece] = "empty";
     board[target] = player;
+    return board;
+  },
+
+  capture: function capture(board, piece){
+    console.log(piece);
+    board[piece] = "empty";
     return board;
   }
 

@@ -50,8 +50,8 @@ function Game() {
   this.showingMoves = false;
   this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
-  this.rightTarget = 0;
-  this.leftTarget = 0;
+  this.rightTarget = {enemy: 0, square: 0};
+  this.leftTarget = {enemy: 0, square: 0};
   this.onTarget = false;
 }
 
@@ -59,7 +59,7 @@ Game.prototype.selectPiece = function(element){
   this.currentPiece = element.href; //save the piece selected
   //this.showingMoves = true; // change showingMoves to true
   var targets = Board.findMoves(element.href); // send the selected piece and return the id for possible moves
-
+  console.log(targets);
   // check if the possible moves have the same team color and if does change the id to none
   if (this.flattenBoard[targets.right] == this.playingNow){
     targets.right = "none";
@@ -71,17 +71,17 @@ Game.prototype.selectPiece = function(element){
   if (this.flattenBoard[targets.right] == this.notPlaying) {
     console.log("enemy on right");
     this.onTarget = true;
-    this.rightTarget = targets.right;
+    this.rightTarget.enemy = targets.right;
     targets.right = Board.targetRight(targets.right, this.flattenBoard);
+    this.rightTarget.square = targets.right;
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
    console.log("enemy on left");
    this.onTarget = true;
-   this.leftTarget = targets.left;
+   this.leftTarget.enemy = targets.left;
    targets.left = Board.targetLeft(targets.left, this.flattenBoard);
+   this.leftTarget.square = targets.left;
   }
-
-  console.log(targets);
   return (targets);
 }
 
@@ -91,6 +91,15 @@ Game.prototype.makeMove = function(position){
   console.log("Moved");
   console.log(position + " position");
   console.log(this.onTarget);
+  if (this.onTarget == true){
+    if (this.rightTarget.square == position){
+      this.flattenBoard = Board.capture(this.flattenBoard, this.rightTarget.enemy);
+    } else if (this.leftTarget.square == position){
+      this.flattenBoard = Board.capture(this.flattenBoard, this.leftTarget.enemy);
+    }
+
+    // console.log(this.flattenBoard);
+  }
   return Board.makeMove(this.playingNow, this.currentPiece, position, this.flattenBoard);
 }
 
