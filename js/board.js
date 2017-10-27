@@ -16,6 +16,9 @@ var Board = {
     return board;
   }, // end of initial
 
+  currentBoard: function currentBoard(){
+  },
+
   // flatten board receive the current game board and return in one single array
   flatten: function flatten(board){
     var flatBoard = board.reduce(

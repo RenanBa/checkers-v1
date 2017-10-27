@@ -41,33 +41,36 @@
 function Game() {
   /* Board.initial generate all elements used to be pieces and empty squares on the
   board and return an array of the board initial position*/
-  this.board = Board.initial();
-  this.boardTest = Board.initial();
-  this.flattenBoard = Board.flatten(this.board);
-  this.flattenBoardTest = Board.flatten(this.board);
-  this.player = "green";
-  this.playerMove = false;
+  this.board = Board.initial(); //initialized the board
+  this.boardsCollection = []; // this array will save the game progress with a collection of boards
+  this.flattenBoard = Board.flatten(this.board); // flatten current board to populate the DOM
+  this.tempFlattenBoard = Board.flatten(this.board);// make a temporary copy of the flatten board to mark the selected piece
+  this.playingNow = "green";
+  this.showingMoves = false;
 }
 
 Game.prototype.selectPiece = function(element){
-  if (!this.playerMove){
-    console.log(element.href);
-    var flatBoardSelect = Board.selectedPiece(element.href, this.flattenBoardTest);
-
+    var flatBoardSelect = Board.selectedPiece(element.href, this.tempFlattenBoard);
     var boardRows = Board.rows(flatBoardSelect); // make 8x8 board array
     var selectedPieceBoardRow = Board.findPosition(boardRows); // look for the value "selected" and collect the ids
-
-    var boardPossibleMoves = Board.possibleMoves(selectedPieceBoardRow, this.boardTest);
-    var moveOptionsBoard = Board.flatten(boardPossibleMoves);
-    moveOptionsBoard[element.href] = this.player;
-
-    this.playerMove = true;
+    console.log(selectedPieceBoardRow);
+    var boardPossibleMoves = Board.possibleMoves(selectedPieceBoardRow, this.board);
+    this.showingMoves = true;
 
 
-    return moveOptionsBoard;
-  } else {
-    console.log(this.board);
-    return this.flattenBoard;
+    // var moveOptionsBoard = Board.flatten(boardPossibleMoves);
+    // moveOptionsBoard[element.href] = this.playingNow;
+    // this.playerMove = true;
+    // return moveOptionsBoard;
+}
+
+Game.prototype.startProgress = function(board){
+  if (this.boardsCollection.length == 0 && !this.showingMoves){
+    console.log("vazio");
+    this.boardsCollection.push(Board.initial());
+  }else if (!this.showingMoves){
+    console.log("cheio");
+    this.boardsCollection.push(this.board);
   }
-  // Board.showMoves(element.href, this.board);
+
 }
