@@ -3,32 +3,42 @@ $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
   game = new Game();
-
-
   PopulateBoard(game.flattenBoard);
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-    $(".spin").removeClass("spin");
-    $(".possibleMoves").removeClass("possibleMoves");
 
-    if (game.playingNow == "green" && $(this).attr('class') != "blue" && $(this).attr('class') != "empty"){
-      game.startProgress();
 
-      var showMoves = game.selectPiece({href: $(this).attr("href")});
-      console.log(showMoves.right.toString());
-      var rightTarget = showMoves.right.toString();
-      var leftTarget = showMoves.left.toString();
-      $("#square"+rightTarget).removeClass("empty").addClass("possibleMoves");
-      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");
+
+    var element = {href: $(this).attr("href"), className: $(this).attr('class'), idName: $(this).attr("id")};
+
+    // this if check if the current player is selecting the right piece color and display moves
+    if (game.playingNow == element.className && element.className != game.notPlaying && element.className != "empty"){
+      game.startProgress(); // this call start to save the board state
+      var showMoves = game.selectPiece(element); // here send the selected piece and return the possible moves
+
+      // remove the class that spin the piece and remove the possibleMoves
+      $(".spin").removeClass("spin");
+      $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
+
+      $(".green").removeClass("empty");
+      $(".blue").removeClass("empty");
+
+      // add the class spin and possibleMoves
+      $("#square"+showMoves.right).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
+      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
       $("#"+$(this).attr("id")).addClass("spin");
 
-    } else {
-      console.log("MAKE A MOVE");
-      console.log();
+      $(".green").removeClass("possibleMoves");
+      $(".blue").removeClass("possibleMoves");
+
+    } else if (element.className == "possibleMoves"){
+      // send the position where the piece will be placed and return a new board with the new position
+      var progressBorad = game.makeMove(element.href);
+      PopulateBoard(progressBorad); //populate the update board
     }
-  }) // .board on click, a funciton
+  }) // .board on click, a function
 
 }) // end (document).ready
 
