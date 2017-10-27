@@ -3,7 +3,9 @@ $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
   game = new Game();
+
   PopulateBoard(game.flattenBoard);
+
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
@@ -36,6 +38,8 @@ $(document).ready(function() {
     } else if (element.className == "possibleMoves"){
       // send the position where the piece will be placed and return a new board with the new position
       var progressBorad = game.makeMove(element.href);
+      game.changeTurn();
+
       PopulateBoard(progressBorad); //populate the update board
     }
   }) // .board on click, a function
@@ -46,6 +50,11 @@ $(document).ready(function() {
 
 var PopulateBoard = function(board){
   $(".board a").remove();
+
+  if (game.playingNow == "green"){
+    board.reverse();
+  }
+
   // this forEach run over the flatten board and create elements for each piece and for the available spots which are all set the position with css
   board.forEach(function(value, index){
     if (value == "green"){

@@ -30,13 +30,13 @@ var Board = {
   // 9 and 7 will be always used to calculate the possible move
   findMoves: function findMoves(position){
     var position = parseInt(position);
-    var moves = {right: position + 9, left: position + 7};
+    var moves = {right: position - 7, left: position - 9};
     return  moves;
   },
 
   targetRight: function targetRight(piece, board){
     var piece = parseInt(piece);
-    var target = piece + 9;
+    var target = piece - 7;
     if (board[target] == "empty"){
       return target;
     } else {
@@ -46,7 +46,7 @@ var Board = {
 
   targetLeft: function targetLeft(piece, board){
     var piece = parseInt(piece);
-    var target = piece + 7;
+    var target = piece - 9;
     if (board[target] == "empty"){
       return target;
     } else {
@@ -65,7 +65,8 @@ var Board = {
     console.log(piece);
     board[piece] = "empty";
     return board;
-  }
+  },
+
 
   // rows will transform a single array board to a 8x8 board arrays
   // rows: function rows(board){

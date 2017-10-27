@@ -45,8 +45,8 @@ function Game() {
   this.boardsCollection = []; // this array will save the game progress with a collection of boards
   this.flattenBoard = Board.flatten(this.board); // flatten current board to populate the DOM
   this.tempFlattenBoard = Board.flatten(this.board);// make a temporary copy of the flatten board to mark the selected piece
-  this.playingNow = "green";
-  this.notPlaying = "blue";
+  this.playingNow = "blue";
+  this.notPlaying = "green";
   this.showingMoves = false;
   this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
@@ -88,28 +88,33 @@ Game.prototype.selectPiece = function(element){
 Game.prototype.makeMove = function(position){
   // send the player color, the selected piece, the position and the current board to make the move
   // and return a updated flattenBoard
-  console.log("Moved");
-  console.log(position + " position");
-  console.log(this.onTarget);
   if (this.onTarget == true){
     if (this.rightTarget.square == position){
       this.flattenBoard = Board.capture(this.flattenBoard, this.rightTarget.enemy);
     } else if (this.leftTarget.square == position){
       this.flattenBoard = Board.capture(this.flattenBoard, this.leftTarget.enemy);
     }
-
-    // console.log(this.flattenBoard);
   }
   return Board.makeMove(this.playingNow, this.currentPiece, position, this.flattenBoard);
+}
+
+Game.prototype.changeTurn = function(){
+  if (this.playingNow == "green"){
+    this.playingNow = "blue";
+    this.notPlaying = "green";
+  } else if (this.playingNow == "blue"){
+    this.playingNow = "green";
+    this.notPlaying = "blue";
+  }
+  this.showingMoves = false;
+  this.currentPiece = 0;
 }
 
 // Save every game board change into an array
 Game.prototype.startProgress = function(board){
   if (this.boardsCollection.length == 0 && !this.showingMoves){
-    console.log("vazio");
     this.boardsCollection.push(Board.initial());
   }else if (!this.showingMoves){
-    console.log("cheio");
     this.boardsCollection.push(this.board);
   }
 
