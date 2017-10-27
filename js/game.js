@@ -50,11 +50,12 @@ function Game() {
   this.showingMoves = false;
   this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
+  this.onTarger = false;
 }
 
 Game.prototype.selectPiece = function(element){
   this.currentPiece = element.href; //save the piece selected
-  this.showingMoves = true; // change showingMoves to true
+  //this.showingMoves = true; // change showingMoves to true
   var targets = Board.findMoves(element.href); // send the selected piece and return the id for possible moves
 
   // check if the possible moves have the same team color and if does change the id to none
@@ -63,6 +64,13 @@ Game.prototype.selectPiece = function(element){
   }
   if (this.flattenBoard[targets.left] == this.playingNow){
     targets.left = "none";
+  }
+
+  if (this.flattenBoard[targets.right] == this.notPlaying) {
+    console.log("enemy on right");
+  }
+  if (this.flattenBoard[targets.left] == this.notPlaying) {
+   console.log("enemy on left");
   }
   console.log(targets);
   return (targets);

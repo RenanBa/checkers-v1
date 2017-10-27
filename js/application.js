@@ -3,15 +3,14 @@ $(document).ready(function() {
   console.log("Ready!");
   // initialize the game and display a board
   game = new Game();
-
-    if(!game.start){
-      PopulateBoard(game.flattenBoard);
-      game.start = true;
-    }
+  PopulateBoard(game.flattenBoard);
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
+
+
+
     var element = {href: $(this).attr("href"), className: $(this).attr('class'), idName: $(this).attr("id")};
 
     // this if check if the current player is selecting the right piece color and display moves
@@ -22,6 +21,8 @@ $(document).ready(function() {
       // remove the class that spin the piece and remove the possibleMoves
       $(".spin").removeClass("spin");
       $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
+      $(".green").removeClass("empty");
+      $(".blue").removeClass("empty");
       // add the class spin and possibleMoves
       $("#square"+showMoves.right).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
       $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");// show moves on the DOM

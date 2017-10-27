@@ -7,9 +7,9 @@ var Board = {
                 ["X", "green", "X", "green", "X", "green", "X", "green"],
                 ["green", "X", "green", "X", "green", "X", "green", "X"],
                 ["X", "green", "X", "green", "X", "green", "X", "green"],
-                ["empty", "X", "empty", "X", "empty", "X", "empty", "X"],
+                ["empty", "X", "blue", "X", "empty", "X", "empty", "X"],
                 ["X", "empty", "X", "empty", "X", "empty", "X", "empty"],
-                ["blue", "X", "blue", "X", "blue", "X", "blue", "X"],
+                ["blue", "X", "empty", "X", "blue", "X", "blue", "X"],
                 ["X", "blue", "X", "blue", "X", "blue", "X", "blue"],
                 ["blue", "X", "blue", "X", "blue", "X", "blue", "X"]
               ];
