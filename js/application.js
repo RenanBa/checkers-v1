@@ -10,9 +10,6 @@ $(document).ready(function() {
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
     e.preventDefault();
-
-
-
     var element = {href: $(this).attr("href"), className: $(this).attr('class'), idName: $(this).attr("id")};
 
     // this if check if the current player is selecting the right piece color and display moves
@@ -20,7 +17,7 @@ $(document).ready(function() {
       game.startProgress(); // this call start to save the board state
       var showMoves = game.selectPiece(element); // here send the selected piece and return the possible moves
 
-      // remove the class that spin the piece and remove the possibleMoves
+      // remove the class that spin the `piece and remove the possibleMoves
       $(".spin").removeClass("spin");
       $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
 
@@ -50,10 +47,6 @@ $(document).ready(function() {
 
 var PopulateBoard = function(board){
   $(".board a").remove();
-
-  if (game.playingNow == "green"){
-    board.reverse();
-  }
 
   // this forEach run over the flatten board and create elements for each piece and for the available spots which are all set the position with css
   board.forEach(function(value, index){

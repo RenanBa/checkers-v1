@@ -45,8 +45,8 @@ function Game() {
   this.boardsCollection = []; // this array will save the game progress with a collection of boards
   this.flattenBoard = Board.flatten(this.board); // flatten current board to populate the DOM
   this.tempFlattenBoard = Board.flatten(this.board);// make a temporary copy of the flatten board to mark the selected piece
-  this.playingNow = "blue";
-  this.notPlaying = "green";
+  this.playingNow = "green";
+  this.notPlaying = "blue";
   this.showingMoves = false;
   this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
@@ -56,10 +56,17 @@ function Game() {
 }
 
 Game.prototype.selectPiece = function(element){
+  // if (start){
+  //   if (this.playingNow == "green"){
+  //     board.reverse();
+  //   }
+  // }else if (this.playingNow == "blue"){
+  //   board.reverse();
+  // }
+
   this.currentPiece = element.href; //save the piece selected
   //this.showingMoves = true; // change showingMoves to true
-  var targets = Board.findMoves(element.href); // send the selected piece and return the id for possible moves
-  console.log(targets);
+  var targets = Board.findMoves(element.href, this.playingNow); // send the selected piece and return the id for possible moves
   // check if the possible moves have the same team color and if does change the id to none
   if (this.flattenBoard[targets.right] == this.playingNow){
     targets.right = "none";
@@ -72,14 +79,14 @@ Game.prototype.selectPiece = function(element){
     console.log("enemy on right");
     this.onTarget = true;
     this.rightTarget.enemy = targets.right;
-    targets.right = Board.targetRight(targets.right, this.flattenBoard);
+    targets.right = Board.targetRight(targets.right, this.flattenBoard, this.playingNow);
     this.rightTarget.square = targets.right;
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
    console.log("enemy on left");
    this.onTarget = true;
    this.leftTarget.enemy = targets.left;
-   targets.left = Board.targetLeft(targets.left, this.flattenBoard);
+   targets.left = Board.targetLeft(targets.left, this.flattenBoard, this.playingNow);
    this.leftTarget.square = targets.left;
   }
   return (targets);
@@ -95,6 +102,7 @@ Game.prototype.makeMove = function(position){
       this.flattenBoard = Board.capture(this.flattenBoard, this.leftTarget.enemy);
     }
   }
+
   return Board.makeMove(this.playingNow, this.currentPiece, position, this.flattenBoard);
 }
 

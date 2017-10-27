@@ -28,29 +28,52 @@ var Board = {
 
   // calculates where the move will be
   // 9 and 7 will be always used to calculate the possible move
-  findMoves: function findMoves(position){
+  findMoves: function findMoves(position, playing){
     var position = parseInt(position);
-    var moves = {right: position - 7, left: position - 9};
+    if (playing == "green"){
+      var moves = {right: position + 9, left: position + 7};
+    } else if ( playing == "blue"){
+      var moves = {right: position - 7, left: position - 9};
+    }
     return  moves;
   },
 
-  targetRight: function targetRight(piece, board){
+  targetRight: function targetRight(piece, board, playing){
     var piece = parseInt(piece);
-    var target = piece - 7;
-    if (board[target] == "empty"){
-      return target;
-    } else {
-      return "none";
+    if (playing == "green"){
+      var target = piece + 9;
+      if (board[target] == "empty"){
+        return target;
+      } else {
+        return "none";
+      }
+    } else if (playing == "blue"){
+      var target = piece - 7;
+      if (board[target] == "empty"){
+        return target;
+      } else {
+        return "none";
+      }
     }
+
   },
 
-  targetLeft: function targetLeft(piece, board){
+  targetLeft: function targetLeft(piece, board, playing){
     var piece = parseInt(piece);
-    var target = piece - 9;
-    if (board[target] == "empty"){
-      return target;
-    } else {
-      return "none";
+    if (playing == "green"){
+      var target = piece + 7;
+      if (board[target] == "empty"){
+        return target;
+      } else {
+        return "none";
+      }
+    } else if (playing == "blue"){
+         var target = piece - 9;
+      if (board[target] == "empty"){
+        return target;
+      } else {
+        return "none";
+      }
     }
   },
 
