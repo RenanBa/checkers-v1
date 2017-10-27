@@ -19,7 +19,7 @@ body {
 }
 
 /*Set green and blues pieces style*/
-.green, .blue {
+.green, .blue, .empty {
   display: block;
   width: 60px;
   height: 60px;
@@ -36,6 +36,10 @@ body {
 .green:hover, .blue:hover  {
   border: 2px solid #fff;
   box-shadow: 0 0 40px rgb(255,255,255);
+}
+
+.empty {
+  display: none;
 }
 
 /*used show the possible moves when a piece is selected*/

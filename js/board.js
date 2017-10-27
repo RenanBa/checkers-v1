@@ -49,6 +49,12 @@ var Board = {
     return boardMark;
   },
 
+  findMoves: function findMoves(position){
+    var position = parseInt(position);
+    var moves = {right: position + 9, left: position + 7};
+    return  moves;
+  },
+
   findPosition: function findPosition(board){
     console.log("findPosition");
     var position = {};

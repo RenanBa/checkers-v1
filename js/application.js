@@ -11,14 +11,22 @@ $(document).ready(function() {
   $(".board").on("click", "a", function(e){
     e.preventDefault();
     $(".spin").removeClass("spin");
-    // PopulateBoard(game.tempFlattenBoard);
+    $(".possibleMoves").removeClass("possibleMoves");
+
     if (game.playingNow == "green" && $(this).attr('class') != "blue" && $(this).attr('class') != "empty"){
-        game.startProgress();
+      game.startProgress();
+
       var showMoves = game.selectPiece({href: $(this).attr("href")});
-      // PopulateBoard(showMoves);
+      console.log(showMoves.right.toString());
+      var rightTarget = showMoves.right.toString();
+      var leftTarget = showMoves.left.toString();
+      $("#square"+rightTarget).removeClass("empty").addClass("possibleMoves");
+      $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");
       $("#"+$(this).attr("id")).addClass("spin");
+
     } else {
       console.log("MAKE A MOVE");
+      console.log();
     }
   }) // .board on click, a funciton
 
