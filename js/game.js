@@ -68,10 +68,13 @@ Game.prototype.selectPiece = function(element){
 
   if (this.flattenBoard[targets.right] == this.notPlaying) {
     console.log("enemy on right");
+    targets.right = Board.targetRight(targets.right);
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
    console.log("enemy on left");
+   targets.left = Board.targetLeft(targets.left);
   }
+
   console.log(targets);
   return (targets);
 }

@@ -21,12 +21,17 @@ $(document).ready(function() {
       // remove the class that spin the piece and remove the possibleMoves
       $(".spin").removeClass("spin");
       $(".possibleMoves").removeClass("possibleMoves").addClass("empty");
+
       $(".green").removeClass("empty");
       $(".blue").removeClass("empty");
+
       // add the class spin and possibleMoves
       $("#square"+showMoves.right).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
       $("#square"+showMoves.left).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
       $("#"+$(this).attr("id")).addClass("spin");
+
+      $(".green").removeClass("possibleMoves");
+      $(".blue").removeClass("possibleMoves");
 
     } else if (element.className == "possibleMoves"){
       // send the position where the piece will be placed and return a new board with the new position

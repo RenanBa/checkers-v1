@@ -34,6 +34,18 @@ var Board = {
     return  moves;
   },
 
+  targetRight: function targetRight(piece){
+    var piece = parseInt(piece);
+    var target = piece + 9;
+    return target;
+  },
+
+  targetLeft: function targetLeft(piece){
+    var piece = parseInt(piece);
+    var target = piece + 7;
+    return target;
+  },
+
   // apply the move into the flatten board to update the game state
   makeMove: function makeMove(player, piece, target, board){
     board[piece] = "empty";
