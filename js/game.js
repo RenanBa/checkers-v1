@@ -50,7 +50,9 @@ function Game() {
   this.showingMoves = false;
   this.currentPiece = 0; //save the selected piece to execute the move
   this.start = false;
-  this.onTarger = false;
+  this.rightTarget = 0;
+  this.leftTarget = 0;
+  this.onTarget = false;
 }
 
 Game.prototype.selectPiece = function(element){
@@ -68,21 +70,28 @@ Game.prototype.selectPiece = function(element){
 
   if (this.flattenBoard[targets.right] == this.notPlaying) {
     console.log("enemy on right");
-    targets.right = Board.targetRight(targets.right);
+    this.onTarget = true;
+    this.rightTarget = targets.right;
+    targets.right = Board.targetRight(targets.right, this.flattenBoard);
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
    console.log("enemy on left");
-   targets.left = Board.targetLeft(targets.left);
+   this.onTarget = true;
+   this.leftTarget = targets.left;
+   targets.left = Board.targetLeft(targets.left, this.flattenBoard);
   }
 
   console.log(targets);
   return (targets);
 }
 
-Game.prototype.makeMove = function(target){
-  // send the player color, the selected piece, the target and the current board to make the move
+Game.prototype.makeMove = function(position){
+  // send the player color, the selected piece, the position and the current board to make the move
   // and return a updated flattenBoard
-  return Board.makeMove(this.playingNow, this.currentPiece, target, this.flattenBoard);
+  console.log("Moved");
+  console.log(position + " position");
+  console.log(this.onTarget);
+  return Board.makeMove(this.playingNow, this.currentPiece, position, this.flattenBoard);
 }
 
 // Save every game board change into an array

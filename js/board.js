@@ -34,16 +34,26 @@ var Board = {
     return  moves;
   },
 
-  targetRight: function targetRight(piece){
+  targetRight: function targetRight(piece, board){
     var piece = parseInt(piece);
     var target = piece + 9;
-    return target;
+    console.log(board[piece]);
+    if (board[target] == "empty"){
+      return target;
+    } else {
+      return "none";
+    }
   },
 
-  targetLeft: function targetLeft(piece){
+  targetLeft: function targetLeft(piece, board){
     var piece = parseInt(piece);
     var target = piece + 7;
-    return target;
+    console.log(board[piece]);
+    if (board[target] == "empty"){
+      return target;
+    } else {
+      return "none";
+    }
   },
 
   // apply the move into the flatten board to update the game state
