@@ -53,34 +53,54 @@ function Game() {
   this.rightTarget = {enemy: 0, square: 0};
   this.leftTarget = {enemy: 0, square: 0};
   this.onTarget = false;
+  this.allTargets = [];
+}
+
+Game.prototype.lookForTargets = function(){
+  var targets = Board.allTargets(this.flattenBoard, this.playingNow, this.notPlaying);
+  var allTargets = [];
+  targets.forEach(function(value, index){
+    if (value[1].left !== undefined){
+      allTargets.push(value[1].left);
+      this.onTarget = true;
+    }
+    if (value[1].right !== undefined){
+      allTargets.push(value[1].right);
+      this.onTarget = true;
+    }
+  })
+  return allTargets;
 }
 
 Game.prototype.selectPiece = function(element){
-  this.currentPiece = element.href; //save the piece selected
-  //this.showingMoves = true; // change showingMoves to true
-  var targets = Board.findMoves(element.href); // send the selected piece and return the id for possible moves
-  console.log(targets);
-  // check if the possible moves have the same team color and if does change the id to none
-  if (this.flattenBoard[targets.right] == this.playingNow){
-    targets.right = "none";
-  }
-  if (this.flattenBoard[targets.left] == this.playingNow){
-    targets.left = "none";
-  }
+  console.log(this.allTargets);
 
+
+  this.currentPiece = element.href; //save the piece selected
+
+  // Board.findMoves return a object with two value
+  var targets = Board.findMoves(element.href, this.playingNow); // send the selected piece and return the id for possible moves
+
+  // check if the possible moves have the same team color and if does change the id to none
+  targets.right = Board.blockPlayerPieces(this.flattenBoard, targets.right, this.playingNow);
+  targets.left = Board.blockPlayerPieces(this.flattenBoard, targets.left, this.playingNow);
+
+
+  // check if the possible moves have the opposite player piece, if so that piece will be on target
   if (this.flattenBoard[targets.right] == this.notPlaying) {
     console.log("enemy on right");
-    this.onTarget = true;
-    this.rightTarget.enemy = targets.right;
-    targets.right = Board.targetRight(targets.right, this.flattenBoard);
-    this.rightTarget.square = targets.right;
+    this.onTarget = true; // set onTarget to true
+    this.rightTarget.enemy = targets.right; //save the position of the piece on target
+    // save the new square where the piece will be placed
+    targets.right = Board.targetRight(targets.right, this.flattenBoard, this.playingNow);
+    this.rightTarget.square = targets.right;// save the
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
-   console.log("enemy on left");
-   this.onTarget = true;
-   this.leftTarget.enemy = targets.left;
-   targets.left = Board.targetLeft(targets.left, this.flattenBoard);
-   this.leftTarget.square = targets.left;
+    console.log("enemy on left");
+    this.onTarget = true;
+    this.leftTarget.enemy = targets.left;
+    targets.left = Board.targetLeft(targets.left, this.flattenBoard, this.playingNow);
+    this.leftTarget.square = targets.left;
   }
   return (targets);
 }
@@ -88,29 +108,39 @@ Game.prototype.selectPiece = function(element){
 Game.prototype.makeMove = function(position){
   // send the player color, the selected piece, the position and the current board to make the move
   // and return a updated flattenBoard
-  console.log("Moved");
-  console.log(position + " position");
-  console.log(this.onTarget);
   if (this.onTarget == true){
     if (this.rightTarget.square == position){
       this.flattenBoard = Board.capture(this.flattenBoard, this.rightTarget.enemy);
     } else if (this.leftTarget.square == position){
       this.flattenBoard = Board.capture(this.flattenBoard, this.leftTarget.enemy);
     }
-
-    // console.log(this.flattenBoard);
   }
+
   return Board.makeMove(this.playingNow, this.currentPiece, position, this.flattenBoard);
+}
+
+Game.prototype.changeTurn = function(){
+  if (this.playingNow == "green"){
+    this.playingNow = "blue";
+    this.notPlaying = "green";
+  } else if (this.playingNow == "blue"){
+    this.playingNow = "green";
+    this.notPlaying = "blue";
+  }
+  this.showingMoves = false;
+  this.currentPiece = 0;
+  this.onTarget = false;
+}
+
+Game.prototype.allTargetsCollection = function(targets){
+  this.allTargets = targets;
 }
 
 // Save every game board change into an array
 Game.prototype.startProgress = function(board){
   if (this.boardsCollection.length == 0 && !this.showingMoves){
-    console.log("vazio");
     this.boardsCollection.push(Board.initial());
   }else if (!this.showingMoves){
-    console.log("cheio");
     this.boardsCollection.push(this.board);
   }
-
 }
