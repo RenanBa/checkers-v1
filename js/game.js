@@ -53,25 +53,28 @@ function Game() {
   this.rightTarget = {enemy: 0, square: 0};
   this.leftTarget = {enemy: 0, square: 0};
   this.onTarget = false;
+  this.allTargets = [];
 }
 
 Game.prototype.lookForTargets = function(){
   var targets = Board.allTargets(this.flattenBoard, this.playingNow, this.notPlaying);
   var allTargets = [];
-  console.log(targets);
   targets.forEach(function(value, index){
     if (value[1].left !== undefined){
       allTargets.push(value[1].left);
+      this.onTarget = true;
     }
     if (value[1].right !== undefined){
       allTargets.push(value[1].right);
+      this.onTarget = true;
     }
   })
-  console.log(allTargets);
   return allTargets;
 }
 
 Game.prototype.selectPiece = function(element){
+  console.log(this.allTargets);
+
 
   this.currentPiece = element.href; //save the piece selected
 
@@ -126,6 +129,11 @@ Game.prototype.changeTurn = function(){
   }
   this.showingMoves = false;
   this.currentPiece = 0;
+  this.onTarget = false;
+}
+
+Game.prototype.allTargetsCollection = function(targets){
+  this.allTargets = targets;
 }
 
 // Save every game board change into an array
@@ -135,5 +143,4 @@ Game.prototype.startProgress = function(board){
   }else if (!this.showingMoves){
     this.boardsCollection.push(this.board);
   }
-
 }

@@ -8,6 +8,8 @@ $(document).ready(function() {
 
   ShowTargets(game.lookForTargets());
 
+  game.allTargetsCollection(game.lookForTargets());
+
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
@@ -15,7 +17,7 @@ $(document).ready(function() {
     var element = {href: $(this).attr("href"), className: $(this).attr('class'), idName: $(this).attr("id")};
 
     // this if check if the current player is selecting the right piece color and display moves
-    if (game.playingNow == element.className && element.className != game.notPlaying && element.className != "empty"){
+    if (game.playingNow == element.className && element.className != "empty"){
       game.startProgress(); // this call start to save the board state
       var showMoves = game.selectPiece(element); // here send the selected piece and return the possible moves
 
@@ -34,12 +36,14 @@ $(document).ready(function() {
       $(".green").removeClass("possibleMoves");
       $(".blue").removeClass("possibleMoves");
 
-    } else if (element.className == "possibleMoves"){
+    } else if (element.className == "possibleMoves" && game.currentPiece > 0){
       // send the position where the piece will be placed and return a new board with the new position
       var progressBorad = game.makeMove(element.href);
       game.changeTurn();
 
       PopulateBoard(progressBorad); //populate the update board
+      ShowTargets(game.lookForTargets());
+      game.allTargetsCollection(game.lookForTargets());
     }
   }) // .board on click, a function
 
@@ -65,9 +69,7 @@ var PopulateBoard = function(board){
 }
 
 var ShowTargets = function(board){
-  console.log("========================");
   board.forEach(function(value, index){
-    console.log(value);
     $("#square"+value).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
   })
 

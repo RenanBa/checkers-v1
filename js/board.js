@@ -43,7 +43,6 @@ var Board = {
   },
 
   blockPlayerPieces: function blockPlayerPieces(board, targetPosition, playing){
-    console.log("function blockPlayerPiecesR");
     if (board[targetPosition] == playing){
        return "none";
     } else {
