@@ -16,14 +16,39 @@ var Board = {
     return board;
   }, // end of initial
 
-  // flatten board receive the current game board and return in one single array
-  flatten: function flatten(board){
-    var flatBoard = board.reduce(
-    function(a,b) {
-      return a.concat(b);
-    },[]
-  );
-  return flatBoard;
+  allTargets: function allTargets(board, playing, notPlaying){
+    var targets = [];
+    var right = 0;
+    var left = 0;
+    board.forEach(function(piece, position){
+      if (piece == playing){
+        var move = Board.findMoves(position, playing);
+        move.right = Board.blockPlayerPieces(board, move.right, playing);
+        move.left = Board.blockPlayerPieces(board, move.left, playing);
+
+        if (board[move.right] == notPlaying){
+          // move.right = Board.targetRight(move.right, board, playing);
+          var right = Board.targetRight(move.right, board, playing);
+        }
+        if (board[move.left] == notPlaying){
+          // move.left = Board.targetLeft(move.left, board, playing);
+          var left = Board.targetLeft(move.left, board, playing);
+        }
+
+        targets.push([position, {left: left, right: right}]);
+      }
+    })
+
+    return targets;
+  },
+
+  blockPlayerPieces: function blockPlayerPieces(board, targetPosition, playing){
+    console.log("function blockPlayerPiecesR");
+    if (board[targetPosition] == playing){
+       return "none";
+    } else {
+      return targetPosition;
+    }
   },
 
   // calculates where the move will be
@@ -88,6 +113,16 @@ var Board = {
     console.log(piece);
     board[piece] = "empty";
     return board;
+  },
+
+   // flatten board receive the current game board and return in one single array
+  flatten: function flatten(board){
+    var flatBoard = board.reduce(
+    function(a,b) {
+      return a.concat(b);
+    },[]
+  );
+  return flatBoard;
   },
 
 

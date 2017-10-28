@@ -6,6 +6,8 @@ $(document).ready(function() {
 
   PopulateBoard(game.flattenBoard);
 
+  ShowTargets(game.lookForTargets());
+
 
   //Handles clicks on the checkers board
   $(".board").on("click", "a", function(e){
@@ -60,4 +62,13 @@ var PopulateBoard = function(board){
       $(".board").append($.parseHTML('<a href="'+(index)+'" id="square'+(index)+'" class="possibleMoves"></a>'));
     }
   })
+}
+
+var ShowTargets = function(board){
+  console.log("========================");
+  board.forEach(function(value, index){
+    console.log(value);
+    $("#square"+value).removeClass("empty").addClass("possibleMoves");// show moves on the DOM
+  })
+
 }

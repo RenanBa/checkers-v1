@@ -55,39 +55,49 @@ function Game() {
   this.onTarget = false;
 }
 
+Game.prototype.lookForTargets = function(){
+  var targets = Board.allTargets(this.flattenBoard, this.playingNow, this.notPlaying);
+  var allTargets = [];
+  console.log(targets);
+  targets.forEach(function(value, index){
+    if (value[1].left !== undefined){
+      allTargets.push(value[1].left);
+    }
+    if (value[1].right !== undefined){
+      allTargets.push(value[1].right);
+    }
+  })
+  console.log(allTargets);
+  return allTargets;
+}
+
 Game.prototype.selectPiece = function(element){
-  // if (start){
-  //   if (this.playingNow == "green"){
-  //     board.reverse();
-  //   }
-  // }else if (this.playingNow == "blue"){
-  //   board.reverse();
-  // }
 
   this.currentPiece = element.href; //save the piece selected
-  //this.showingMoves = true; // change showingMoves to true
-  var targets = Board.findMoves(element.href, this.playingNow); // send the selected piece and return the id for possible moves
-  // check if the possible moves have the same team color and if does change the id to none
-  if (this.flattenBoard[targets.right] == this.playingNow){
-    targets.right = "none";
-  }
-  if (this.flattenBoard[targets.left] == this.playingNow){
-    targets.left = "none";
-  }
 
+  // Board.findMoves return a object with two value
+  var targets = Board.findMoves(element.href, this.playingNow); // send the selected piece and return the id for possible moves
+
+  // check if the possible moves have the same team color and if does change the id to none
+  targets.right = Board.blockPlayerPieces(this.flattenBoard, targets.right, this.playingNow);
+  targets.left = Board.blockPlayerPieces(this.flattenBoard, targets.left, this.playingNow);
+
+
+  // check if the possible moves have the opposite player piece, if so that piece will be on target
   if (this.flattenBoard[targets.right] == this.notPlaying) {
     console.log("enemy on right");
-    this.onTarget = true;
-    this.rightTarget.enemy = targets.right;
+    this.onTarget = true; // set onTarget to true
+    this.rightTarget.enemy = targets.right; //save the position of the piece on target
+    // save the new square where the piece will be placed
     targets.right = Board.targetRight(targets.right, this.flattenBoard, this.playingNow);
-    this.rightTarget.square = targets.right;
+    this.rightTarget.square = targets.right;// save the
   }
   if (this.flattenBoard[targets.left] == this.notPlaying) {
-   console.log("enemy on left");
-   this.onTarget = true;
-   this.leftTarget.enemy = targets.left;
-   targets.left = Board.targetLeft(targets.left, this.flattenBoard, this.playingNow);
-   this.leftTarget.square = targets.left;
+    console.log("enemy on left");
+    this.onTarget = true;
+    this.leftTarget.enemy = targets.left;
+    targets.left = Board.targetLeft(targets.left, this.flattenBoard, this.playingNow);
+    this.leftTarget.square = targets.left;
   }
   return (targets);
 }
