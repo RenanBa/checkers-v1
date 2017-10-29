@@ -54,26 +54,37 @@ function Game() {
   this.leftTarget = {enemy: 0, square: 0};
   this.onTarget = false;
   this.allTargets = [];
+  this.pieceToJump = [];
+  this.validMove = [];
 }
 
 Game.prototype.lookForTargets = function(){
+  // Board.allTargets return an array with all the pieces that has chance for jump
+  // each value of this array has the piece to jump and the target square
   var targets = Board.allTargets(this.flattenBoard, this.playingNow, this.notPlaying);
   var allTargets = [];
+  var pieceToJump = [];
+  // loop over the targets if the target square has a valid jump
   targets.forEach(function(value, index){
     if (value[1].left !== undefined){
       allTargets.push(value[1].left);
-      this.onTarget = true;
     }
     if (value[1].right !== undefined){
       allTargets.push(value[1].right);
+    }
+    if (value[1].right !== undefined || value[1].left !== undefined){
+      pieceToJump.push(value[0]);
       this.onTarget = true;
     }
   })
+  this.validMove = targets;
+  this.pieceToJump = pieceToJump;
+  this.allTargets = allTargets;
   return allTargets;
 }
 
 Game.prototype.selectPiece = function(element){
-  console.log(this.allTargets);
+  // console.log(this.allTargets);
 
 
   this.currentPiece = element.href; //save the piece selected
