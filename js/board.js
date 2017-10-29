@@ -21,11 +21,15 @@ var Board = {
     var right = 0;
     var left = 0;
     board.forEach(function(piece, position){
+      // check if the selected piece belongs to whose is turn
       if (piece == playing){
+        // find the move of the current piece
         var move = Board.findMoves(position, playing);
+        // if the target square is occupied by the same team piece it is set as none
         move.right = Board.blockPlayerPieces(board, move.right, playing);
         move.left = Board.blockPlayerPieces(board, move.left, playing);
 
+        // if the target square is occupied by the enemy piece it is recalculate to return the target square
         if (board[move.right] == notPlaying){
           // move.right = Board.targetRight(move.right, board, playing);
           var right = Board.targetRight(move.right, board, playing);
